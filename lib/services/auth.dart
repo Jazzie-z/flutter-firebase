@@ -1,4 +1,5 @@
 import 'package:brew_crew/models/user.dart';
+import 'package:brew_crew/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -28,8 +29,32 @@ class AuthService {
   }
 
 //sign in email
+  Future signIn(String email, String pass) async {
+    try {
+      AuthResult result =
+          await _auth.signInWithEmailAndPassword(email: email, password: pass);
+      FirebaseUser user = result.user;
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
 
 //register
+  Future registerWithEmailPass(String email, String pass) async {
+    try {
+      AuthResult result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: pass);
+      FirebaseUser user = result.user;
+      //create new documnet for the registered user
+      await DatabaseService(uid:user.uid).updateUserData('0', 'new', 100);
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
 
 //signout
   Future signOut() async {
