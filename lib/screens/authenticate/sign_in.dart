@@ -2,6 +2,7 @@ import 'package:brew_crew/screens/authenticate/components/input_box.dart';
 import 'package:brew_crew/screens/loading.dart';
 import 'package:brew_crew/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -14,6 +15,7 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final AuthService _auth = AuthService();
+
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
 
@@ -98,6 +100,13 @@ class _SignInState extends State<SignIn> {
                                 print(result);
                               }
                             }
+                          },
+                        ),
+                        RaisedButton(
+                          color: Colors.blue,
+                          child: Text('Sign in with Google', style: TextStyle(color: Colors.white)),
+                          onPressed: (){
+                            _auth.signInWithGoogle();
                           },
                         ),
                         SizedBox(

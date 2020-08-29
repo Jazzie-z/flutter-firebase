@@ -12,6 +12,10 @@ class DatabaseService {
       Firestore.instance.collection('my-brews');
 
   Future updateUserData(String sugars, String name, int strength) async {
+    UserData data = await userData.first;
+    if(data.name != null){
+      return data;
+    }
     return await brewCollection
         .document(uid)
         .setData({'sugars': sugars, 'name': name, 'strength': strength});

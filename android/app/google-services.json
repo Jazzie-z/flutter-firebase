@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "456866217172-r2sner9sip6j59c3r7qmp84642plpgnj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jai.brew_crew",
+            "certificate_hash": "9f883ff8b71bff8722865f58a6d7036054de3878"
+          }
+        },
+        {
           "client_id": "456866217172-l8gcpkppl0ils4uch7lrl48395tocq7v.apps.googleusercontent.com",
           "client_type": 3
         }
